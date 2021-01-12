@@ -1,0 +1,17 @@
+@import "./variables";
+@import "./mixins";
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+
+  @include media(laptop) {
+    font-size: 72.5%;
+  }
+}
+
+body {
+  background-color: $off-white;
+  font-family: Helvetica, sans-serif;
+  font-size: 1.4rem;
+}

@@ -1,0 +1,37 @@
+{
+  "env": {
+    "commonjs": true,
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:promise/recommended",
+    "react-app",
+    "airbnb",
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": ["promise", "jsx-a11y", "react", "react-hooks", "prettier"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "impliedStrict": true,
+      "classes": true,
+      "jsx": true
+    }
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "react/no-unescaped-entities": 0,
+    "react/jsx-props-no-spreading": "off"
+  }
+}
