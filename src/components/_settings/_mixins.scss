@@ -17,3 +17,17 @@
     }
   }
 }
+
+@mixin orientation($orientation) {
+  @if $orientation == landscape {
+    @media (orientation: landscape) {
+      @content;
+    }
+  }
+
+  @if $orientation == portrait {
+    @media (orientation: portrait) {
+      @content;
+    }
+  }
+}

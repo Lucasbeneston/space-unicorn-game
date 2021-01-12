@@ -1,0 +1,37 @@
+.game {
+  width: 100%;
+  height: calc(100vh - 100px);
+  background-color: cornsilk;
+
+  &_map {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  &_gameover {
+    font-size: 3rem;
+    text-transform: uppercase;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.unicorn {
+  width: 60px;
+  height: 60px;
+  background-color: brown;
+  position: absolute;
+  bottom: 0;
+  left: 60px;
+}
+
+.obstacle {
+  width: 60px;
+  height: 60px;
+  background-color: orange;
+  position: absolute;
+  bottom: 0;
+}

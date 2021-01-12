@@ -31,7 +31,6 @@
   },
   "rules": {
     "prettier/prettier": "error",
-    "react/no-unescaped-entities": 0,
-    "react/jsx-props-no-spreading": "off"
+    "react/no-unescaped-entities": 0
   }
 }
