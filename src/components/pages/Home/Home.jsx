@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import "./Home.scss";
 
 export default function Home() {
-  const [isGameOver, setIsGameOver] = useState(false);
+  const [isGameOver, setIsGameOver] = useState(true);
   const [score, setScore] = useState(0);
 
   // useEffect(() => {
@@ -13,8 +13,7 @@ export default function Home() {
   //   return () => clearInterval(timer);
   // }, [isGameOver, score]);
 
-  console.log(isGameOver);
-  console.log(setIsGameOver, setScore);
+  console.log(setScore);
 
   useEffect(() => {
     const unicorn = document.querySelector(".unicorn");
@@ -23,14 +22,17 @@ export default function Home() {
     const gravity = 0.9;
 
     function control(e) {
-      if (e.keyCode === 32 || e.keyCode === 38) {
-        if (!isJumping) {
-          isJumping = true;
-          jump();
+      if (!isGameOver) {
+        if (e.keyCode === 32 || e.keyCode === 38) {
+          if (!isJumping) {
+            isJumping = true;
+            jump();
+          }
         }
       }
+      // setIsGameOver(false);
     }
-    if (!isGameOver) document.addEventListener("keydown", control);
+    document.addEventListener("keydown", control);
 
     let position = 0;
 
@@ -63,24 +65,29 @@ export default function Home() {
 
     function generateObstacles() {
       const randomTime = Math.random() * 5000;
-      let obstaclePosition = 1000;
+      let obstaclePosition = 1700;
+
       const obstacle = document.createElement("div");
-      if (!isGameOver) obstacle.classList.add("obstacle");
+      obstacle.classList.add("obstacle");
+
       const img = document.createElement("img");
       img.src = `${process.env.PUBLIC_URL}/images/coronavirus.png`;
+
       obstacle.appendChild(img);
       map.appendChild(obstacle);
+
       obstacle.style.left = `${obstaclePosition}px`;
 
       const timerId = setInterval(() => {
         if (obstaclePosition > 0 && obstaclePosition < 130 && position < 60) {
           clearInterval(timerId);
-          setIsGameOver(true);
           map.removeChild(map.lastChild);
+          setIsGameOver(true);
         }
         obstaclePosition -= 8;
         obstacle.style.left = `${obstaclePosition}px`;
       }, 20);
+
       setTimeout(generateObstacles, randomTime);
     }
     if (!isGameOver) generateObstacles();
@@ -91,6 +98,34 @@ export default function Home() {
       <h2 className="game_score">Score : {score}</h2>
       {isGameOver ? <h2 className="game_gameover">Game Over</h2> : null}
       <div className="game_map">
+        <div className="game_map_space">
+          <img
+            className="game_map_space_planet"
+            src={`${process.env.PUBLIC_URL}/images/planet.png`}
+            alt="asteroid"
+          />
+          <img
+            className="game_map_space_asteroid1"
+            src={`${process.env.PUBLIC_URL}/images/asteroid_2.png`}
+            alt="asteroid"
+          />
+          <img
+            className="game_map_space_asteroid2"
+            src={`${process.env.PUBLIC_URL}/images/asteroid_1.png`}
+            alt="asteroid"
+          />
+          <img
+            className="game_map_space_asteroid3"
+            src={`${process.env.PUBLIC_URL}/images/asteroid_3.png`}
+            alt="asteroid"
+          />
+          <img
+            className="game_map_space_asteroid4"
+            src={`${process.env.PUBLIC_URL}/images/asteroid_1.png`}
+            alt="asteroid"
+          />
+        </div>
+
         <div className="unicorn">
           <img src={`${process.env.PUBLIC_URL}/images/Unicorn.png`} alt="" />
         </div>

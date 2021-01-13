@@ -5,11 +5,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: rgba(255, 255, 255, 0.5);
   padding: 0 5%;
 
   &_copyright,
   &_github {
+    color: rgba(255, 255, 255, 0.5);
     font-weight: lighter;
     font-size: 1.2rem;
   }

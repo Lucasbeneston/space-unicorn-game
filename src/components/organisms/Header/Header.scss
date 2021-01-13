@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  // background-color: orchid;
   padding: 0 5%;
   z-index: 100;
 
@@ -39,7 +38,7 @@
   }
 
   &_highScore {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     text-align: center;
     font-weight: lighter;
   }
