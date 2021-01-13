@@ -7,12 +7,12 @@
   padding: 0 5%;
   z-index: 100;
 
-  &_buttons {
+  &_containerButtons {
     width: 105px;
     display: flex;
     justify-content: space-between;
 
-    button {
+    &_button {
       color: rgba(255, 255, 255, 0.25);
       height: 45px;
       width: 45px;
@@ -24,11 +24,22 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      transition: border 0.25s, color 0.25s;
 
       & svg {
         width: 70%;
       }
+
+      &.active {
+        color: rgba(255, 255, 255, 0.75);
+        border: 2px solid rgba(255, 255, 255, 0.75);
+        transition: 0.25s;
+      }
     }
+  }
+
+  &_music {
+    display: none;
   }
 
   &_title {

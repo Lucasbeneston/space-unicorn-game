@@ -2,10 +2,14 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-use-before-define */
 import React, { useState, useEffect } from "react";
+import Space from "../../organisms/Space/Space";
+import Unicorn from "../../atoms/Unicorn/Unicorn";
+
 import "./Home.scss";
+import Volcano from "../../atoms/Volcano/Volcano";
 
 export default function Home() {
-  const [isGameOver, setIsGameOver] = useState(true);
+  const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
 
   // useEffect(() => {
@@ -18,6 +22,7 @@ export default function Home() {
   useEffect(() => {
     const unicorn = document.querySelector(".unicorn");
     const map = document.querySelector(".game_map");
+    const jumpAudio = document.querySelector(".unicorn_jumpAudio");
     let isJumping = false;
     const gravity = 0.9;
 
@@ -27,6 +32,8 @@ export default function Home() {
           if (!isJumping) {
             isJumping = true;
             jump();
+            jumpAudio.volume = 0.5;
+            jumpAudio.play();
           }
         }
       }
@@ -65,7 +72,7 @@ export default function Home() {
 
     function generateObstacles() {
       const randomTime = Math.random() * 5000;
-      let obstaclePosition = 1700;
+      let obstaclePosition = 1700; // px
 
       const obstacle = document.createElement("div");
       obstacle.classList.add("obstacle");
@@ -90,7 +97,7 @@ export default function Home() {
 
       setTimeout(generateObstacles, randomTime);
     }
-    if (!isGameOver) generateObstacles();
+    if (!isGameOver === false) generateObstacles();
   }, [isGameOver]);
 
   return (
@@ -98,42 +105,11 @@ export default function Home() {
       <h2 className="game_score">Score : {score}</h2>
       {isGameOver ? <h2 className="game_gameover">Game Over</h2> : null}
       <div className="game_map">
-        <div className="game_map_space">
-          <img
-            className="game_map_space_planet"
-            src={`${process.env.PUBLIC_URL}/images/planet.png`}
-            alt="asteroid"
-          />
-          <img
-            className="game_map_space_asteroid1"
-            src={`${process.env.PUBLIC_URL}/images/asteroid_2.png`}
-            alt="asteroid"
-          />
-          <img
-            className="game_map_space_asteroid2"
-            src={`${process.env.PUBLIC_URL}/images/asteroid_1.png`}
-            alt="asteroid"
-          />
-          <img
-            className="game_map_space_asteroid3"
-            src={`${process.env.PUBLIC_URL}/images/asteroid_3.png`}
-            alt="asteroid"
-          />
-          <img
-            className="game_map_space_asteroid4"
-            src={`${process.env.PUBLIC_URL}/images/asteroid_1.png`}
-            alt="asteroid"
-          />
-        </div>
-
-        <div className="unicorn">
-          <img src={`${process.env.PUBLIC_URL}/images/Unicorn.png`} alt="" />
-        </div>
+        <Space />
+        <Unicorn />
+        <Volcano />
       </div>
       <div className="game_ground" />
-      <div className="game_volcano">
-        <img src={`${process.env.PUBLIC_URL}/images/volcano.png`} alt="" />
-      </div>
     </div>
   );
 }

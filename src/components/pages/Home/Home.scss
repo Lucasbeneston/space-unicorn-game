@@ -1,34 +1,3 @@
-@keyframes rotateRight {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes rotateLeft {
-  0% {
-    transform: rotate(360deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes planetRotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(35deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
 .game {
   width: 100%;
   height: calc(100vh - 130px);
@@ -40,52 +9,6 @@
     width: 100%;
     position: relative;
     background-color: #000c4f;
-
-    &_space {
-      width: 100%;
-      height: 80%;
-      position: relative;
-
-      &_planet {
-        position: absolute;
-        width: 150px;
-        right: 5%;
-        top: 15%;
-        animation: planetRotate 30s infinite linear;
-      }
-
-      &_asteroid1 {
-        position: absolute;
-        width: random(40) + 70 + px;
-        left: 2%;
-        top: 25%;
-        animation: rotateRight random(50) + 30 + s infinite linear;
-      }
-
-      &_asteroid2 {
-        position: absolute;
-        width: random(40) + 50 + px;
-        left: 25%;
-        top: 0%;
-        animation: rotateRight random(50) + 30 + s infinite linear;
-      }
-
-      &_asteroid3 {
-        position: absolute;
-        width: random(40) + 70 + px;
-        left: 37.5%;
-        top: 70%;
-        animation: rotateLeft random(50) + 30 + s infinite linear;
-      }
-
-      &_asteroid4 {
-        position: absolute;
-        width: random(40) + 50 + px;
-        right: 25%;
-        top: 40%;
-        animation: rotateRight random(50) + 30 + s infinite linear;
-      }
-    }
   }
 
   &_ground {
@@ -95,15 +18,6 @@
     position: absolute;
     bottom: 0;
     z-index: 10;
-  }
-
-  &_volcano {
-    position: absolute;
-    width: 25%;
-    bottom: 19%;
-    left: 60%;
-    transform: translate(-50%);
-    z-index: 5;
   }
 
   &_score {
@@ -124,35 +38,6 @@
     text-align: center;
     z-index: 150;
   }
-}
-
-@keyframes fly {
-  0% {
-    bottom: 0px;
-  }
-  25% {
-    bottom: 10px;
-  }
-  50% {
-    bottom: 0px;
-  }
-  75% {
-    bottom: 10px;
-  }
-  100% {
-    bottom: 0px;
-  }
-}
-
-.unicorn {
-  width: 80px;
-  height: 90px;
-  // background-color: brown;
-  position: absolute;
-  bottom: 0;
-  left: 60px;
-  animation: fly infinite 2s ease-in;
-  z-index: 150;
 }
 
 @keyframes bounce {
@@ -176,7 +61,6 @@
 .obstacle {
   width: 60px;
   height: 60px;
-  // background-color: orange;
   position: absolute;
   bottom: 0;
   animation: bounce infinite 2s;

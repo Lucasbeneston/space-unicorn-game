@@ -1,0 +1,31 @@
+@keyframes fly {
+  0% {
+    bottom: 0px;
+  }
+  25% {
+    bottom: 10px;
+  }
+  50% {
+    bottom: 0px;
+  }
+  75% {
+    bottom: 10px;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+
+.unicorn {
+  width: 80px;
+  height: 90px;
+  position: absolute;
+  bottom: 0;
+  left: 60px;
+  animation: fly infinite 2s ease-in;
+  z-index: 150;
+
+  &_jumpAudio {
+    display: none;
+  }
+}
