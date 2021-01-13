@@ -1,8 +1,16 @@
 .footer {
   height: 50px;
   width: 100%;
-  background-color: #2f4859;
+  background-color: #33373a;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 0 5%;
+
+  &_copyright,
+  &_github {
+    font-weight: lighter;
+    font-size: 1.2rem;
+  }
 }

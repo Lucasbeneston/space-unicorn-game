@@ -6,8 +6,15 @@ import "./Home.scss";
 
 export default function Home() {
   const [isGameOver, setIsGameOver] = useState(false);
-  // console.log(isGameOver);
-  console.log(setIsGameOver);
+  const [score, setScore] = useState(0);
+
+  // useEffect(() => {
+  //   const timer = setInterval(() => setScore(score + 1), 10);
+  //   return () => clearInterval(timer);
+  // }, [isGameOver, score]);
+
+  console.log(isGameOver);
+  console.log(setIsGameOver, setScore);
 
   useEffect(() => {
     const unicorn = document.querySelector(".unicorn");
@@ -81,11 +88,16 @@ export default function Home() {
 
   return (
     <div className="game">
-      {isGameOver ? <h2 className="game_gameover">Game Over !</h2> : null}
+      <h2 className="game_score">Score : {score}</h2>
+      {isGameOver ? <h2 className="game_gameover">Game Over</h2> : null}
       <div className="game_map">
         <div className="unicorn">
           <img src={`${process.env.PUBLIC_URL}/images/Unicorn.png`} alt="" />
         </div>
+      </div>
+      <div className="game_ground" />
+      <div className="game_volcano">
+        <img src={`${process.env.PUBLIC_URL}/images/volcano.png`} alt="" />
       </div>
     </div>
   );
