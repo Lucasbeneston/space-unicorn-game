@@ -59,7 +59,7 @@ export default function Header() {
         </button>
       </div>
       <h1 className="header_title">Space Unicorn Game</h1>
-      <h3 className="header_highScore">Hight score : 0</h3>
+      <h3 className="header_highScore">High score : 0</h3>
     </header>
   );
 }

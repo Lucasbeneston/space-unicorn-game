@@ -1,5 +1,10 @@
 @import "./variables";
 @import "./mixins";
+@font-face {
+  font-family: "ArcadClassic";
+  src: local("ArcadClassic"),
+    url(../../fonts/ARCADECLASSIC.TTF) format("truetype");
+}
 
 html {
   font-size: 62.5%;
@@ -12,7 +17,8 @@ html {
 
 body {
   background-color: #000c4f;
-  font-family: Helvetica, sans-serif;
+  font-family: "ArcadClassic", Helvetica, sans-serif;
+  word-spacing: 0.75rem;
   font-size: 1.4rem;
   color: $off-white;
 }
