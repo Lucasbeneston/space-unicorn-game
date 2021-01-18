@@ -5,6 +5,7 @@ import Space from "../../organisms/Space/Space";
 import Unicorn from "../../atoms/Unicorn/Unicorn";
 import Volcano from "../../atoms/Volcano/Volcano";
 import Start from "../../molecules/Start/Start";
+import ToSmallScreen from "../../molecules/ToSmallScreen/ToSmallScreen";
 
 import "./Home.scss";
 
@@ -12,8 +13,6 @@ export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const size = useWindowSize();
-
-  console.log(size);
 
   document.addEventListener("DOMContentLoaded", () => {
     const unicorn = document.querySelector(".unicorn");
@@ -79,19 +78,21 @@ export default function Home() {
           {!isPlaying && isGameOver ? (
             <Start message="To replay press" />
           ) : null}
-          <div className="game_map">
-            <Space />
-            <Unicorn />
-            <Volcano />
-          </div>
-          <div className="game_ground" />
         </>
-      ) : (
-        <div className="game_toSmallScreen">
-          <h2>To play</h2>
-          <h3>Make sure you have sufficient screen width</h3>
-        </div>
-      )}
+      ) : null}
+
+      <div className="game_map">
+        <Unicorn />
+        {size.width > size.height * 1.25 ? (
+          <>
+            <Space />
+            <Volcano />
+          </>
+        ) : (
+          <ToSmallScreen />
+        )}
+      </div>
+      <div className="game_ground" />
     </div>
   );
 }

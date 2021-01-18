@@ -1,0 +1,19 @@
+.toSmallScreen {
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  & h2 {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  & h3 {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
