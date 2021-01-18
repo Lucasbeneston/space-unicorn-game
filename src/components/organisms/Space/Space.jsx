@@ -1,6 +1,6 @@
 import React from "react";
 import Particles from "react-particles-js";
-import particlesConfig from "./particlesConfig";
+import particlesConfig from "../../../customHooks/particlesConfig";
 
 import "./Space.scss";
 
