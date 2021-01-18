@@ -1,29 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import useWindowSize from "../../../customHooks/useWindowSize";
+import GameInformationsContext from "../../../contexts/InformationsGameContext";
 import Effect from "../../atoms/SVGR/Effect";
 import Music from "../../atoms/SVGR/Music";
 import "./Header.scss";
 
 export default function Header() {
-  const [isPlaying, setIsPlaying] = useState({
-    music: false,
-    effect: true,
-  });
-
   const size = useWindowSize();
+  const context = useContext(GameInformationsContext);
+  const { gameInformations, setGameInformations } = context;
 
   useEffect(() => {
     const music = document.querySelector(".header_music");
 
     if (music !== null) {
-      if (isPlaying.music) {
+      if (gameInformations.music) {
         music.volume = 0.5;
         music.play();
       } else {
         music.pause();
       }
     }
-  }, [isPlaying]);
+  }, [gameInformations.music]);
 
   return (
     <header className="header">
@@ -31,22 +29,28 @@ export default function Header() {
         <div className="header_containerButtons">
           <button
             className={`header_containerButtons_button ${
-              isPlaying.effect ? "active" : ""
+              gameInformations.effect ? "active" : ""
             }`}
             type="button"
             // onClick={() => {
-            //   setIsPlaying({ ...isPlaying, effect: !isPlaying.effect });
+            //   setGameInformations({
+            //     ...gameInformations,
+            //     effect: !gameInformations.effect,
+            //   });
             // }}
           >
             <Effect />
           </button>
           <button
             className={`header_containerButtons_button ${
-              isPlaying.music ? "active" : ""
+              gameInformations.music ? "active" : ""
             }`}
             type="button"
             onClick={() => {
-              setIsPlaying({ ...isPlaying, music: !isPlaying.music });
+              setGameInformations({
+                ...gameInformations,
+                music: !gameInformations.music,
+              });
             }}
           >
             <Music />
