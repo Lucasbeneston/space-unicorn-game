@@ -1,9 +1,13 @@
 import React from "react";
+import Particles from "react-particles-js";
+import particlesConfig from "./particlesConfig";
+
 import "./Space.scss";
 
 export default function Space() {
   return (
     <div className="space">
+      <Particles params={particlesConfig} />
       <img
         className="space_planet"
         src={`${process.env.PUBLIC_URL}/images/planet.png`}

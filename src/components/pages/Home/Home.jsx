@@ -53,7 +53,7 @@ export default function Home() {
           if (!isJumping) {
             isJumping = true;
             jump();
-            jumpAudio.volume = 0.5;
+            jumpAudio.volume = 0.25;
             jumpAudio.play();
           }
         }
