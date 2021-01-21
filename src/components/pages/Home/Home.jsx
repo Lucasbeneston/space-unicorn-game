@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-plusplus */
 import React, { useState, useEffect } from "react";
 
@@ -16,6 +17,8 @@ import "./Home.scss";
 
 export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
+  console.log("isPlaying conponente ---> ", isPlaying);
+
   const [isGameOver, setIsGameOver] = useState(false);
   const size = useWindowSize();
   const unicornPosition = 0;
@@ -38,12 +41,11 @@ export default function Home() {
   });
 
   // GENERATE OBSTACLE FUNCTION
-  // eslint-disable-next-line consistent-return
   function generateObstacles() {
     // Random time to generate obstacles
-    const min = 1500; // s
-    const max = 5000; // s
-    const randomTime = Math.floor(Math.random() * (max - min + 1) + min);
+    // const min = 1500; // s
+    // const max = 5000; // s
+    // const randomTime = Math.floor(Math.random() * (max - min + 1) + min);
 
     // Create and add new obstacle in the map
     const obstacle = document.createElement("div");
@@ -79,16 +81,33 @@ export default function Home() {
         }
       }
     }, 20);
-    console.log("RENDER !");
-    if (isPlaying) setTimeout(generateObstacles, randomTime);
+    console.log("RENDER generateObstacle() !");
   }
 
-  // A FAIRE : Jouer la fonction que si isPlaying est true
-  // PB : La fonction continue de générer des obstacles
-  // Générer aléatoire la fonction dans le useEffect
+  // Jouer la fonction que si isPlaying est true
   useEffect(() => {
-    console.log("--->", isPlaying);
-    if (isPlaying) generateObstacles();
+    let random;
+
+    function startGenerateObstacle() {
+      random = setInterval(generateObstacles, 2000);
+    }
+
+    function stopGenerateObstacle() {
+      clearInterval(random);
+    }
+
+    function startAndStop() {
+      if (isPlaying) {
+        startGenerateObstacle();
+      } else {
+        stopGenerateObstacle();
+      }
+    }
+
+    startAndStop();
+    return () => {
+      stopGenerateObstacle();
+    };
   }, [isPlaying]);
 
   return (
