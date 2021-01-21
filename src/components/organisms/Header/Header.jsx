@@ -32,12 +32,12 @@ export default function Header() {
               gameInformations.effect ? "active" : ""
             }`}
             type="button"
-            // onClick={() => {
-            //   setGameInformations({
-            //     ...gameInformations,
-            //     effect: !gameInformations.effect,
-            //   });
-            // }}
+            onClick={() => {
+              setGameInformations({
+                ...gameInformations,
+                effect: !gameInformations.effect,
+              });
+            }}
           >
             <Effect />
           </button>

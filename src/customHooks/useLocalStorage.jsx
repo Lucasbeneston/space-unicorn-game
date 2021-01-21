@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+/* eslint-disable no-console */
+import { useState } from "react";
 
 // // Usage
 // function App() {
@@ -39,10 +40,6 @@ export default function useLocalStorage(key, initialValue) {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    setValue(storedValue);
-  }, []);
 
   return [storedValue, setValue];
 }
