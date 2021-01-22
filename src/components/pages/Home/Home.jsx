@@ -1,6 +1,5 @@
-/* eslint-disable no-console */
 /* eslint-disable no-plusplus */
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 // CUSTOM HOOK
 import useWindowSize from "../../../customHooks/useWindowSize";
@@ -17,36 +16,73 @@ import "./Home.scss";
 
 export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
-  console.log("isPlaying conponente ---> ", isPlaying);
-
   const [isGameOver, setIsGameOver] = useState(false);
   const size = useWindowSize();
-  const unicornPosition = 0;
+  const unicornPosition = useRef(0);
   const map = document.querySelector(".game_map");
 
   // UNICORN JUMP FUNCTION
-  function jump() {
-    console.log("Jump !");
-  }
+  useEffect(() => {
+    const unicorn = document.querySelector(".unicorn");
+    let isJumping = false;
 
-  // KEYBOARD "KEYDOWN" EVENT
-  document.addEventListener("keydown", (e) => {
-    if (!isPlaying) {
-      if (e.keyCode === 32 || e.keyCode === 38) {
-        jump();
-      }
+    function jump() {
+      let count = 0;
+      const gravity = 0.9;
+
+      const jumpTimer = setInterval(() => {
+        // Move up
+        unicornPosition.current += 30;
+        count++;
+        unicornPosition.current *= gravity;
+        unicorn.style.animation = "none";
+        unicorn.style.bottom = `${unicornPosition.current}px`;
+        // Move down
+        if (count === 15) {
+          clearInterval(jumpTimer);
+          const downTimer = setInterval(() => {
+            if (count === 0) {
+              clearInterval(downTimer);
+              isJumping = false;
+            }
+            unicornPosition.current -= 5;
+            count--;
+            unicornPosition.current *= gravity;
+            unicorn.style.bottom = `${unicornPosition.current}px`;
+            if (unicornPosition.current < 10)
+              unicorn.style.animation = "fly infinite 2s";
+          }, 25);
+        }
+      }, 25);
     }
-    setIsPlaying(true);
-    setIsGameOver(false);
-  });
 
-  // GENERATE OBSTACLE FUNCTION
+    // KEYBOARD "KEYDOWN" EVENT
+    const handleUserKeyPress = (e) => {
+      if (!isPlaying) {
+        if (e.keyCode === 32 || e.keyCode === 38) {
+          if (!isJumping) {
+            isJumping = true;
+            jump();
+          }
+        }
+      }
+      setIsPlaying(true);
+      setIsGameOver(false);
+    };
+
+    document.addEventListener("keydown", handleUserKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleUserKeyPress);
+    };
+  }, []);
+
+  // RANDOM TIME TO GENERATE OBSTACLES
+  // const min = 1500; // s
+  // const max = 5000; // s
+  // const randomTime = Math.floor(Math.random() * (max - min + 1) + min);
+
+  // GENERATE OBSTACLES FUNCTION
   function generateObstacles() {
-    // Random time to generate obstacles
-    // const min = 1500; // s
-    // const max = 5000; // s
-    // const randomTime = Math.floor(Math.random() * (max - min + 1) + min);
-
     // Create and add new obstacle in the map
     const obstacle = document.createElement("div");
     obstacle.classList.add("obstacle");
@@ -68,7 +104,7 @@ export default function Home() {
       if (
         obstaclePosition > 0 &&
         obstaclePosition < 130 &&
-        unicornPosition < obstacle.clientHeight
+        unicornPosition.current < obstacle.clientHeight
       ) {
         setIsGameOver(true);
         setIsPlaying(false);
@@ -76,15 +112,14 @@ export default function Home() {
 
         // Remove all existing obstacles except the first
         const allObstacles = document.getElementsByClassName("obstacle");
-        while (allObstacles[1]) {
-          allObstacles[1].parentNode.removeChild(allObstacles[1]);
+        while (("1", allObstacles[0])) {
+          allObstacles[0].parentNode.removeChild(allObstacles[0]);
         }
       }
     }, 20);
-    console.log("RENDER generateObstacle() !");
   }
 
-  // Jouer la fonction que si isPlaying est true
+  // PLAY GENERATEOBSTACLES() ONLY IS ISPLAYING IS TRUE
   useEffect(() => {
     let random;
 
