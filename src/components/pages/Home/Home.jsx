@@ -73,6 +73,8 @@ export default function Home() {
     // START OR JUMP
     function handleUserKeyPress(e) {
       if (e.keyCode === 32 || e.keyCode === 38) {
+        e.preventDefault();
+
         if (!isJumping) {
           isJumping = true;
           jump();
