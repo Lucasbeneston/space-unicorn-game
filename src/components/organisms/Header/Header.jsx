@@ -12,6 +12,9 @@ export default function Header() {
 
   useEffect(() => {
     const music = document.querySelector(".atmosphericMusic");
+    const jumpAudio = document.querySelector(".jumpAudio");
+    const gameOverAudio = document.querySelector(".gameOverAudio");
+    const unicorn = document.querySelector(".unicorn");
 
     if (music !== null) {
       if (gameInformations.music) {
@@ -21,7 +24,38 @@ export default function Header() {
         music.pause();
       }
     }
-  }, [gameInformations.music]);
+
+    if (
+      gameInformations.effect &&
+      jumpAudio === null &&
+      gameOverAudio === null
+    ) {
+      // New jump audio
+      const newJumpAudio = document.createElement("audio");
+      newJumpAudio.classList.add("jumpAudio");
+      newJumpAudio.src = `${process.env.PUBLIC_URL}/audio/Jump.ogg`;
+      newJumpAudio.style.display = "none";
+
+      // New game over audio
+      const newGameOverAudio = document.createElement("audio");
+      newGameOverAudio.classList.add("gameOverAudio");
+      newGameOverAudio.src = `${process.env.PUBLIC_URL}/audio/GameOver.ogg`;
+      newGameOverAudio.style.display = "none";
+
+      // Add jump audio and game over audio to unicorn
+      unicorn.appendChild(newJumpAudio);
+      unicorn.appendChild(newGameOverAudio);
+    }
+
+    if (
+      !gameInformations.effect &&
+      jumpAudio !== null &&
+      gameOverAudio !== null
+    ) {
+      unicorn.removeChild(jumpAudio);
+      unicorn.removeChild(gameOverAudio);
+    }
+  }, [gameInformations]);
 
   return (
     <header className="header">

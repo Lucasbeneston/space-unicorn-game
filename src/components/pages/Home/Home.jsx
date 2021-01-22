@@ -1,37 +1,43 @@
 /* eslint-disable no-plusplus */
 import React, { useContext, useRef, useState, useEffect } from "react";
-
-// CONTEXT
 import GameInformationsContext from "../../../contexts/InformationsGameContext";
-
-// CUSTOM HOOK
 import useWindowSize from "../../../customHooks/useWindowSize";
-
-// COMPONENTS
 import ToSmallScreen from "../../molecules/ToSmallScreen/ToSmallScreen";
 import Space from "../../organisms/Space/Space";
 import Unicorn from "../../atoms/Unicorn/Unicorn";
 import Volcano from "../../atoms/Volcano/Volcano";
 import Start from "../../molecules/Start/Start";
 
-// STYLE
 import "./Home.scss";
 
 export default function Home() {
+  // CONTEXT
   const context = useContext(GameInformationsContext);
   const { gameInformations, setGameInformations } = context;
+
+  // STATES
   const [isPlaying, setIsPlaying] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
+  const [effects, setEffects] = useState({
+    jump: null,
+    gameOver: null,
+  });
+
   const size = useWindowSize();
   const unicornPosition = useRef(0);
   const map = document.querySelector(".game_map");
-  const gameOverAudio = document.querySelector(".gameOverAudio");
+
+  useEffect(() => {
+    setEffects({
+      jump: document.querySelector(".jumpAudio"),
+      gameOver: document.querySelector(".gameOverAudio"),
+    });
+  }, [gameInformations]);
 
   // UNICORN JUMP FUNCTION
   useEffect(() => {
     const unicorn = document.querySelector(".unicorn");
-    const jumpAudio = document.querySelector(".jumpAudio");
     let isJumping = false;
 
     function jump() {
@@ -69,8 +75,10 @@ export default function Home() {
       if (e.keyCode === 32 || e.keyCode === 38) {
         if (!isJumping) {
           isJumping = true;
-          jumpAudio.play();
           jump();
+          if (effects.jump !== null) {
+            effects.jump.play();
+          }
         }
         if (!isPlaying) {
           setIsPlaying(true);
@@ -84,7 +92,7 @@ export default function Home() {
     return () => {
       document.removeEventListener("keydown", handleUserKeyPress);
     };
-  }, []);
+  }, [isPlaying, effects]);
 
   // GENERATE OBSTACLES FUNCTION
   function generateObstacles() {
@@ -111,7 +119,9 @@ export default function Home() {
         obstaclePosition < 130 &&
         unicornPosition.current < obstacle.clientHeight
       ) {
-        gameOverAudio.play();
+        if (effects.gameOver !== null) {
+          effects.gameOver.play();
+        }
         setIsGameOver(true);
         setIsPlaying(false);
         clearInterval(timerId);
@@ -193,19 +203,7 @@ export default function Home() {
           <ToSmallScreen />
         )}
       </div>
-      <div className="game_ground">
-        <audio
-          className="gameOverAudio"
-          style={{ display: "none" }}
-          src={`${process.env.PUBLIC_URL}/audio/GameOver.ogg`}
-        >
-          <track
-            default
-            kind="captions"
-            src={`${process.env.PUBLIC_URL}/audio/GameOver.ogg`}
-          />
-        </audio>
-      </div>
+      <div className="game_ground" />
     </div>
   );
 }
