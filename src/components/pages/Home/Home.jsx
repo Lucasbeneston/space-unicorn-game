@@ -17,6 +17,7 @@ import "./Home.scss";
 export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [score, setScore] = useState(0);
   const size = useWindowSize();
   const unicornPosition = useRef(0);
   const map = document.querySelector(".game_map");
@@ -115,6 +116,13 @@ export default function Home() {
     }, 20);
   }
 
+  // - AUGMENTER LE SCORE QUAND ISPLAYING = TRUE
+  useEffect(() => {
+    const timer = setInterval(() => setScore(score + 1), 100);
+    if (isGameOver) clearInterval(timer);
+    return () => clearInterval(timer);
+  }, [isGameOver, score]);
+
   // PLAY GENERATEOBSTACLES() ONLY IS ISPLAYING IS TRUE
   useEffect(() => {
     let random;
@@ -146,14 +154,14 @@ export default function Home() {
       {size.width > size.height * 1.25 ? (
         <>
           {isPlaying || isGameOver ? (
-            <h2 className="game_score">Score : 0</h2>
+            <h2 className="game_score">Score : {score}</h2>
           ) : null}
 
           {!isPlaying && !isGameOver ? (
             <Start message="To start press" />
           ) : null}
           {!isPlaying && isGameOver ? (
-            <Start option="game over" message="To replay press" />
+            <Start option="- game over -" message="To replay press" />
           ) : null}
         </>
       ) : null}

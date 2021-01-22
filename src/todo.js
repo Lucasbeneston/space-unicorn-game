@@ -1,6 +1,5 @@
 // TO DO LIST :
 // - RANDOM TIME TO GENERATE OBSTACLES
-// - AJOUTER LE "GAME OVER" AU DESSUS DU MESSAGE POUR RESTART
 // - AUGMENTER LE SCORE QUAND ISPLAYING = TRUE
 // - UPDATE HIGH SCORE SI SCORE > HIGH SCORE QUAND ISGAMEOVER = TRUE
 // - AJOUTER UN SON DE GAME OVER
@@ -22,3 +21,9 @@
 //   // if (isGameOver) clearInterval(timer);
 //   return () => clearInterval(timer);
 // }, [isGameOver, score]);
+
+function updateScore() {
+  const timer = setInterval(() => setScore(score + 1), 100);
+  if (isGameOver) clearInterval(timer);
+  return () => clearInterval(timer);
+}
