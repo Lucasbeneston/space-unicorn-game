@@ -56,7 +56,7 @@ export default function Home() {
       }, 25);
     }
 
-    // KEYBOARD "KEYDOWN" EVENT
+    // START OR JUMP
     const handleUserKeyPress = (e) => {
       if (!isPlaying) {
         if (e.keyCode === 32 || e.keyCode === 38) {
@@ -70,16 +70,12 @@ export default function Home() {
       setIsGameOver(false);
     };
 
+    // KEYBOARD "KEYDOWN" EVENT
     document.addEventListener("keydown", handleUserKeyPress);
     return () => {
       document.removeEventListener("keydown", handleUserKeyPress);
     };
   }, []);
-
-  // RANDOM TIME TO GENERATE OBSTACLES
-  // const min = 1500; // s
-  // const max = 5000; // s
-  // const randomTime = Math.floor(Math.random() * (max - min + 1) + min);
 
   // GENERATE OBSTACLES FUNCTION
   function generateObstacles() {
@@ -149,7 +145,9 @@ export default function Home() {
     <div className="game">
       {size.width > size.height * 1.25 ? (
         <>
-          {isPlaying ? <h2 className="game_score">Score : 0</h2> : null}
+          {isPlaying || isGameOver ? (
+            <h2 className="game_score">Score : 0</h2>
+          ) : null}
 
           {!isPlaying && !isGameOver ? (
             <Start message="To start press" />
