@@ -72,7 +72,9 @@ export default function Header() {
 
       <h1 className="header_title">Space Unicorn Game</h1>
       {size.width > size.height * 1.25 ? (
-        <h3 className="header_highScore">High score : 0</h3>
+        <h3 className="header_highScore">
+          High score : {gameInformations.highScore}
+        </h3>
       ) : null}
     </header>
   );

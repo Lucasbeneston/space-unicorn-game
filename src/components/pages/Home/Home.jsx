@@ -1,5 +1,8 @@
 /* eslint-disable no-plusplus */
-import React, { useRef, useState, useEffect } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
+
+// CONTEXT
+import GameInformationsContext from "../../../contexts/InformationsGameContext";
 
 // CUSTOM HOOK
 import useWindowSize from "../../../customHooks/useWindowSize";
@@ -15,6 +18,8 @@ import Start from "../../molecules/Start/Start";
 import "./Home.scss";
 
 export default function Home() {
+  const context = useContext(GameInformationsContext);
+  const { gameInformations, setGameInformations } = context;
   const [isPlaying, setIsPlaying] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
@@ -134,7 +139,13 @@ export default function Home() {
 
     function stopGenerateObstacle() {
       clearInterval(random);
-      // if (score > highScore) setHighScore(score)
+      if (score > gameInformations.highScore) {
+        console.log("UPDATE SCORE");
+        setGameInformations({
+          ...gameInformations,
+          highScore: score,
+        });
+      }
     }
 
     function startAndStop() {
