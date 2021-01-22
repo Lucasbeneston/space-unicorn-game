@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { useState } from "react";
 
-// // Usage
+// USAGE
 // function App() {
 //   // Similar to useState but first arg is key to the value in local storage.
 //   const [name, setName] = useLocalStorage("name", "Bob");
@@ -18,7 +18,7 @@ import { useState } from "react";
 //   );
 // }
 
-// Hook
+// HOOK
 export default function useLocalStorage(key, initialValue) {
   const [storedValue, setStoredValue] = useState(() => {
     try {

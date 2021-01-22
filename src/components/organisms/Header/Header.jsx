@@ -11,7 +11,7 @@ export default function Header() {
   const { gameInformations, setGameInformations } = context;
 
   useEffect(() => {
-    const music = document.querySelector(".header_music");
+    const music = document.querySelector(".atmosphericMusic");
 
     if (music !== null) {
       if (gameInformations.music) {
@@ -55,7 +55,8 @@ export default function Header() {
           >
             <Music />
             <audio
-              className="header_music"
+              className="atmosphericMusic"
+              style={{ display: "none" }}
               src={`${process.env.PUBLIC_URL}/audio/Music.wav`}
               controls
               loop

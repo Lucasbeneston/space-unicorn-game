@@ -26,10 +26,12 @@ export default function Home() {
   const size = useWindowSize();
   const unicornPosition = useRef(0);
   const map = document.querySelector(".game_map");
+  const gameOverAudio = document.querySelector(".gameOverAudio");
 
   // UNICORN JUMP FUNCTION
   useEffect(() => {
     const unicorn = document.querySelector(".unicorn");
+    const jumpAudio = document.querySelector(".jumpAudio");
     let isJumping = false;
 
     function jump() {
@@ -67,6 +69,7 @@ export default function Home() {
       if (e.keyCode === 32 || e.keyCode === 38) {
         if (!isJumping) {
           isJumping = true;
+          jumpAudio.play();
           jump();
         }
         if (!isPlaying) {
@@ -108,6 +111,7 @@ export default function Home() {
         obstaclePosition < 130 &&
         unicornPosition.current < obstacle.clientHeight
       ) {
+        gameOverAudio.play();
         setIsGameOver(true);
         setIsPlaying(false);
         clearInterval(timerId);
@@ -139,8 +143,7 @@ export default function Home() {
 
     function stopGenerateObstacle() {
       clearInterval(random);
-      if (score > gameInformations.highScore) {
-        console.log("UPDATE SCORE");
+      if (score > gameInformations.highScore && isGameOver) {
         setGameInformations({
           ...gameInformations,
           highScore: score,
@@ -190,7 +193,19 @@ export default function Home() {
           <ToSmallScreen />
         )}
       </div>
-      <div className="game_ground" />
+      <div className="game_ground">
+        <audio
+          className="gameOverAudio"
+          style={{ display: "none" }}
+          src={`${process.env.PUBLIC_URL}/audio/GameOver.ogg`}
+        >
+          <track
+            default
+            kind="captions"
+            src={`${process.env.PUBLIC_URL}/audio/GameOver.ogg`}
+          />
+        </audio>
+      </div>
     </div>
   );
 }

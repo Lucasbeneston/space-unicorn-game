@@ -6,13 +6,14 @@ export default function Unicorn() {
     <div className="unicorn">
       <img src={`${process.env.PUBLIC_URL}/images/Unicorn.png`} alt="" />
       <audio
-        className="unicorn_jumpAudio"
-        src={`${process.env.PUBLIC_URL}/audio/jump.flac`}
+        className="jumpAudio"
+        style={{ display: "none" }}
+        src={`${process.env.PUBLIC_URL}/audio/Jump.ogg`}
       >
         <track
           default
           kind="captions"
-          src={`${process.env.PUBLIC_URL}/audio/jump.flac`}
+          src={`${process.env.PUBLIC_URL}/audio/Jump.ogg`}
         />
       </audio>
     </div>
