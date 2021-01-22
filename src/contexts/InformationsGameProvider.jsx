@@ -5,7 +5,7 @@ import InformationsGameContext from "./InformationsGameContext";
 
 export default function InformationsGameProvider({ children }) {
   const [gameInformations, setGameInformations] = useLocalStorage(
-    "information",
+    "unicornGameInformations",
     {
       music: false,
       effect: true,

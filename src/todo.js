@@ -21,9 +21,3 @@
 //   // if (isGameOver) clearInterval(timer);
 //   return () => clearInterval(timer);
 // }, [isGameOver, score]);
-
-function updateScore() {
-  const timer = setInterval(() => setScore(score + 1), 100);
-  if (isGameOver) clearInterval(timer);
-  return () => clearInterval(timer);
-}

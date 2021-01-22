@@ -58,18 +58,18 @@ export default function Home() {
     }
 
     // START OR JUMP
-    const handleUserKeyPress = (e) => {
-      if (!isPlaying) {
-        if (e.keyCode === 32 || e.keyCode === 38) {
-          if (!isJumping) {
-            isJumping = true;
-            jump();
-          }
+    function handleUserKeyPress(e) {
+      if (e.keyCode === 32 || e.keyCode === 38) {
+        if (!isJumping) {
+          isJumping = true;
+          jump();
+        }
+        if (!isPlaying) {
+          setIsPlaying(true);
+          setIsGameOver(false);
         }
       }
-      setIsPlaying(true);
-      setIsGameOver(false);
-    };
+    }
 
     // KEYBOARD "KEYDOWN" EVENT
     document.addEventListener("keydown", handleUserKeyPress);
@@ -116,7 +116,7 @@ export default function Home() {
     }, 20);
   }
 
-  // - AUGMENTER LE SCORE QUAND ISPLAYING = TRUE
+  // UPDATE SCORE WHEN ISPLAYING IS TRUE
   useEffect(() => {
     const timer = setInterval(() => setScore(score + 1), 100);
     if (isGameOver) clearInterval(timer);
@@ -129,10 +129,12 @@ export default function Home() {
 
     function startGenerateObstacle() {
       random = setInterval(generateObstacles, 2000);
+      if (score > 0) setScore(0);
     }
 
     function stopGenerateObstacle() {
       clearInterval(random);
+      // if (score > highScore) setHighScore(score)
     }
 
     function startAndStop() {
@@ -145,7 +147,7 @@ export default function Home() {
 
     startAndStop();
     return () => {
-      stopGenerateObstacle();
+      clearInterval(random);
     };
   }, [isPlaying]);
 
