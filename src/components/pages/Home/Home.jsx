@@ -153,7 +153,7 @@ export default function Home() {
             <Start message="To start press" />
           ) : null}
           {!isPlaying && isGameOver ? (
-            <Start message="To replay press" />
+            <Start option="game over" message="To replay press" />
           ) : null}
         </>
       ) : null}
