@@ -13,7 +13,7 @@ export default function Header() {
   const { gameInformations, setGameInformations } = context;
 
   useEffect(() => {
-    const music = document.querySelector(".atmosphericMusic");
+    const atmosphereAudio = document.querySelector(".atmosphericAudio");
     const jumpAudio = document.querySelector(".jumpAudio");
     const gameOverAudio = document.querySelector(".gameOverAudio");
     const unicorn = document.querySelector(".unicorn");
@@ -50,17 +50,12 @@ export default function Header() {
       unicorn.removeChild(gameOverAudio);
     }
 
-    // A FAIRE :
-    // Récupérer valeur de audioMusic par sa class
-    // Ne pas oublier d'effacer manuellement du composant l'audio
-    // Si music = true && audioMusic === null alors je crée et ajouter l'audio puis le joue
-    // Si music = false alors je supprimer l'audio
-    if (music !== null) {
+    if (atmosphereAudio !== null) {
       if (gameInformations.music && !isSafari && !isIE) {
-        music.volume = 0.25;
-        music.play();
+        atmosphereAudio.volume = 0.25;
+        atmosphereAudio.play();
       } else {
-        music.pause();
+        atmosphereAudio.pause();
       }
     }
   }, [gameInformations]);
@@ -84,7 +79,7 @@ export default function Header() {
             <Effect />
           </button>
           <button
-            className={`header_containerButtons_button ${
+            className={`header_containerButtons_button musicButton ${
               gameInformations.music && !isSafari ? "active" : ""
             }`}
             type="button"
@@ -97,7 +92,7 @@ export default function Header() {
           >
             <Music />
             <audio
-              className="atmosphericMusic"
+              className="atmosphericAudio"
               style={{ display: "none" }}
               src={`${process.env.PUBLIC_URL}/audio/Music.wav`}
               controls

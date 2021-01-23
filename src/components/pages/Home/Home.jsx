@@ -26,6 +26,7 @@ export default function Home() {
     gameOver: null,
   });
   const [randomTime, setRandomTime] = useState(0);
+  const [speed, setSpeed] = useState(0);
 
   const size = useWindowSize();
   const unicornPosition = useRef(0);
@@ -117,7 +118,7 @@ export default function Home() {
 
     // Advance the obstacle by 8px every 0.02s
     const timerId = setInterval(() => {
-      obstaclePosition -= 8;
+      obstaclePosition -= 8 + speed;
       obstacle.style.left = `${obstaclePosition}px`;
 
       // If the unicorn hits an obstacle
@@ -132,6 +133,7 @@ export default function Home() {
         setIsGameOver(true);
         setIsPlaying(false);
         clearInterval(timerId);
+        setSpeed(0);
 
         // Remove all existing obstacles except the first
         const allObstacles = document.getElementsByClassName("obstacle");
@@ -143,6 +145,7 @@ export default function Home() {
     const min = 1000; // ms
     const max = 2500; // ms
     setRandomTime(Math.floor(Math.random() * (max - min + 1) + min));
+    setSpeed(speed + 1);
   }
 
   // UPDATE SCORE WHEN ISPLAYING IS TRUE
