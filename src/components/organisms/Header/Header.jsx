@@ -16,15 +16,6 @@ export default function Header() {
     const gameOverAudio = document.querySelector(".gameOverAudio");
     const unicorn = document.querySelector(".unicorn");
 
-    if (music !== null) {
-      if (gameInformations.music) {
-        music.volume = 0.5;
-        music.play();
-      } else {
-        music.pause();
-      }
-    }
-
     if (
       gameInformations.effect &&
       jumpAudio === null &&
@@ -54,6 +45,20 @@ export default function Header() {
     ) {
       unicorn.removeChild(jumpAudio);
       unicorn.removeChild(gameOverAudio);
+    }
+
+    // A FAIRE :
+    // Récupérer valeur de audioMusic par sa class
+    // Ne pas oublier d'effacer manuellement du composant l'audio
+    // Si music = true && audioMusic === null alors je crée et ajouter l'audio puis le joue
+    // Si music = false alors je supprimer l'audio
+    if (music !== null) {
+      if (gameInformations.music) {
+        music.volume = 0.25;
+        music.play();
+      } else {
+        music.pause();
+      }
     }
   }, [gameInformations]);
 

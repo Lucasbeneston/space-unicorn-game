@@ -7,15 +7,15 @@ export default function InformationsGameProvider({ children }) {
   const [gameInformations, setGameInformations] = useLocalStorage(
     "unicornGameInformations",
     {
-      music: false,
       effect: true,
+      music: false,
       highScore: 0,
     }
   );
 
   useEffect(() => {
     setGameInformations(gameInformations);
-  }, []);
+  }, [gameInformations, setGameInformations]);
 
   const contextInformationsGame = {
     gameInformations,

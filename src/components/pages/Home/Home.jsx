@@ -23,6 +23,7 @@ export default function Home() {
     jump: null,
     gameOver: null,
   });
+  const [randomTime, setRandomTime] = useState(0);
 
   const size = useWindowSize();
   const unicornPosition = useRef(0);
@@ -85,6 +86,7 @@ export default function Home() {
         if (!isPlaying) {
           setIsPlaying(true);
           setIsGameOver(false);
+          if (score > 0) setScore(0);
         }
       }
     }
@@ -94,6 +96,7 @@ export default function Home() {
     return () => {
       document.removeEventListener("keydown", handleUserKeyPress);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPlaying, effects]);
 
   // GENERATE OBSTACLES FUNCTION
@@ -135,26 +138,32 @@ export default function Home() {
         }
       }
     }, 20);
+    const min = 1000; // ms
+    const max = 2500; // ms
+    setRandomTime(Math.floor(Math.random() * (max - min + 1) + min));
   }
 
   // UPDATE SCORE WHEN ISPLAYING IS TRUE
   useEffect(() => {
-    const timer = setInterval(() => setScore(score + 1), 100);
-    if (isGameOver) clearInterval(timer);
+    let timer;
+    if (isPlaying) {
+      timer = setInterval(() => setScore(score + 1), 100);
+    } else {
+      clearInterval(timer);
+    }
     return () => clearInterval(timer);
-  }, [isGameOver, score]);
+  }, [isPlaying, score]);
 
   // PLAY GENERATEOBSTACLES() ONLY IS ISPLAYING IS TRUE
   useEffect(() => {
-    let random;
+    let intervalGenerateObstacles;
 
     function startGenerateObstacle() {
-      random = setInterval(generateObstacles, 2000);
-      if (score > 0) setScore(0);
+      intervalGenerateObstacles = setInterval(generateObstacles, randomTime);
     }
 
     function stopGenerateObstacle() {
-      clearInterval(random);
+      clearInterval(intervalGenerateObstacles);
       if (score > gameInformations.highScore && isGameOver) {
         setGameInformations({
           ...gameInformations,
@@ -173,9 +182,10 @@ export default function Home() {
 
     startAndStop();
     return () => {
-      clearInterval(random);
+      clearInterval(intervalGenerateObstacles);
     };
-  }, [isPlaying]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPlaying, randomTime]);
 
   return (
     <div className="game">
