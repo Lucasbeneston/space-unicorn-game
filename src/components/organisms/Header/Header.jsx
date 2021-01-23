@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { isSafari, isIE } from "react-device-detect";
 import useWindowSize from "../../../customHooks/useWindowSize";
 import GameInformationsContext from "../../../contexts/InformationsGameContext";
@@ -19,6 +20,7 @@ export default function Header() {
 
     if (
       gameInformations.effect &&
+      unicorn !== null &&
       jumpAudio === null &&
       gameOverAudio === null
     ) {
@@ -111,7 +113,9 @@ export default function Header() {
         </div>
       ) : null}
 
-      <h1 className="header_title">Space Unicorn Game</h1>
+      <Link className="header_title" to="/">
+        <h1>Space Unicorn Game</h1>
+      </Link>
       {size.width > size.height * 1.25 ? (
         <h3 className="header_highScore">
           High score : {gameInformations.highScore}

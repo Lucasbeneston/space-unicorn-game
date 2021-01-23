@@ -7,6 +7,7 @@ import ToSmallScreen from "../../molecules/ToSmallScreen/ToSmallScreen";
 import Space from "../../organisms/Space/Space";
 import Unicorn from "../../atoms/Unicorn/Unicorn";
 import Volcano from "../../atoms/Volcano/Volcano";
+import GameGround from "../../atoms/GameGround/GameGround";
 import Start from "../../molecules/Start/Start";
 
 import "./Home.scss";
@@ -216,7 +217,7 @@ export default function Home() {
           <ToSmallScreen />
         )}
       </div>
-      <div className="game_ground" />
+      <GameGround />
     </div>
   );
 }

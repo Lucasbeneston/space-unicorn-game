@@ -1,0 +1,28 @@
+.noMatch {
+  width: 100%;
+  height: calc(100vh - 130px);
+  position: relative;
+  display: flex;
+
+  &_informations {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    line-height: 8rem;
+
+    &_oops {
+      font-size: 4rem;
+    }
+
+    &_404 {
+      font-size: 15rem;
+    }
+
+    &_notFound {
+      font-size: 2rem;
+    }
+  }
+}
