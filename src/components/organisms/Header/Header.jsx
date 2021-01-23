@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { isSafari, isIE } from "react-device-detect";
 import useWindowSize from "../../../customHooks/useWindowSize";
 import GameInformationsContext from "../../../contexts/InformationsGameContext";
 import Effect from "../../atoms/SVGR/Effect";
@@ -53,7 +54,7 @@ export default function Header() {
     // Si music = true && audioMusic === null alors je crée et ajouter l'audio puis le joue
     // Si music = false alors je supprimer l'audio
     if (music !== null) {
-      if (gameInformations.music) {
+      if (gameInformations.music && !isSafari && !isIE) {
         music.volume = 0.25;
         music.play();
       } else {
@@ -68,7 +69,7 @@ export default function Header() {
         <div className="header_containerButtons">
           <button
             className={`header_containerButtons_button ${
-              gameInformations.effect ? "active" : ""
+              gameInformations.effect && !isSafari ? "active" : ""
             }`}
             type="button"
             onClick={() => {
@@ -82,7 +83,7 @@ export default function Header() {
           </button>
           <button
             className={`header_containerButtons_button ${
-              gameInformations.music ? "active" : ""
+              gameInformations.music && !isSafari ? "active" : ""
             }`}
             type="button"
             onClick={() => {

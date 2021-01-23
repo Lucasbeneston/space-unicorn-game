@@ -1,5 +1,6 @@
 /* eslint-disable no-plusplus */
 import React, { useContext, useRef, useState, useEffect } from "react";
+import { isSafari, isIE } from "react-device-detect";
 import GameInformationsContext from "../../../contexts/InformationsGameContext";
 import useWindowSize from "../../../customHooks/useWindowSize";
 import ToSmallScreen from "../../molecules/ToSmallScreen/ToSmallScreen";
@@ -79,7 +80,7 @@ export default function Home() {
         if (!isJumping) {
           isJumping = true;
           jump();
-          if (effects.jump !== null) {
+          if (effects.jump !== null && !isSafari && !isIE) {
             effects.jump.play();
           }
         }
@@ -124,7 +125,7 @@ export default function Home() {
         obstaclePosition < 130 &&
         unicornPosition.current < obstacle.clientHeight
       ) {
-        if (effects.gameOver !== null) {
+        if (effects.gameOver !== null && !isSafari && !isIE) {
           effects.gameOver.play();
         }
         setIsGameOver(true);
