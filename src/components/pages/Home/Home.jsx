@@ -142,10 +142,24 @@ export default function Home() {
         }
       }
     }, 20);
+
+    setSpeed(speed + 0.5);
     const min = 1000; // ms
-    const max = 2500; // ms
+    let max; // ms
+    if (speed <= 10) {
+      max = 2500; // ms
+    } else if (speed > 10 && speed <= 20) {
+      max = 2250; // ms
+    } else if (speed > 20 && speed <= 30) {
+      max = 2000; // ms
+    } else if (speed > 30 && speed <= 40) {
+      max = 1750; // ms
+    } else if (speed > 40 && speed <= 50) {
+      max = 1500; // ms
+    } else {
+      max = 1250; // ms
+    }
     setRandomTime(Math.floor(Math.random() * (max - min + 1) + min));
-    setSpeed(speed + 1);
   }
 
   // UPDATE SCORE WHEN ISPLAYING IS TRUE
