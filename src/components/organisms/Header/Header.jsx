@@ -16,12 +16,14 @@ export default function Header() {
     const atmosphereAudio = document.querySelector(".atmosphericAudio");
     const jumpAudio = document.querySelector(".jumpAudio");
     const gameOverAudio = document.querySelector(".gameOverAudio");
+    const levelUp = document.querySelector(".levelUp");
     const unicorn = document.querySelector(".unicorn");
 
     if (
       gameInformations.effect &&
       unicorn !== null &&
       jumpAudio === null &&
+      levelUp === null &&
       gameOverAudio === null
     ) {
       // New jump audio
@@ -36,18 +38,27 @@ export default function Header() {
       newGameOverAudio.src = `${process.env.PUBLIC_URL}/audio/GameOver.ogg`;
       newGameOverAudio.style.display = "none";
 
+      // New level up audio
+      const newLevelUpAudio = document.createElement("audio");
+      newLevelUpAudio.classList.add("levelUp");
+      newLevelUpAudio.src = `${process.env.PUBLIC_URL}/audio/LevelUp.ogg`;
+      newLevelUpAudio.style.display = "none";
+
       // Add jump audio and game over audio to unicorn
       unicorn.appendChild(newJumpAudio);
       unicorn.appendChild(newGameOverAudio);
+      unicorn.appendChild(newLevelUpAudio);
     }
 
     if (
       !gameInformations.effect &&
       jumpAudio !== null &&
-      gameOverAudio !== null
+      gameOverAudio !== null &&
+      levelUp !== null
     ) {
       unicorn.removeChild(jumpAudio);
       unicorn.removeChild(gameOverAudio);
+      unicorn.removeChild(levelUp);
     }
 
     if (atmosphereAudio !== null) {
@@ -94,14 +105,14 @@ export default function Header() {
             <audio
               className="atmosphericAudio"
               style={{ display: "none" }}
-              src={`${process.env.PUBLIC_URL}/audio/Music.wav`}
+              src={`${process.env.PUBLIC_URL}/audio/Music.ogg`}
               controls
               loop
             >
               <track
                 default
                 kind="captions"
-                src={`${process.env.PUBLIC_URL}/audio/Music.wav`}
+                src={`${process.env.PUBLIC_URL}/audio/Music.ogg`}
               />
             </audio>
           </button>

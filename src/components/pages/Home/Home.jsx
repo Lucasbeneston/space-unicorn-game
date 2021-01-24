@@ -36,6 +36,7 @@ export default function Home() {
     setEffects({
       jump: document.querySelector(".jumpAudio"),
       gameOver: document.querySelector(".gameOverAudio"),
+      levelUp: document.querySelector(".levelUp"),
     });
   }, [gameInformations]);
 
@@ -159,26 +160,41 @@ export default function Home() {
       max = 2250; // ms
       if (speed === 10.5) {
         setSpeedLevel(2);
+        if (effects.levelUp !== null && !isSafari && !isIE) {
+          effects.levelUp.play();
+        }
       }
     } else if (speed > 20 && speed <= 30) {
       max = 2000; // ms
       if (speed === 20.5) {
         setSpeedLevel(3);
+        if (effects.levelUp !== null && !isSafari && !isIE) {
+          effects.levelUp.play();
+        }
       }
     } else if (speed > 30 && speed <= 40) {
       max = 1750; // ms
       if (speed === 30.5) {
         setSpeedLevel(4);
+        if (effects.levelUp !== null && !isSafari && !isIE) {
+          effects.levelUp.play();
+        }
       }
     } else if (speed > 40 && speed <= 50) {
       max = 1500; // ms
       if (speed === 40.5) {
         setSpeedLevel(5);
+        if (effects.levelUp !== null && !isSafari && !isIE) {
+          effects.levelUp.play();
+        }
       }
     } else {
       max = 1250; // ms
       if (speed === 50.5) {
         setSpeedLevel(6);
+        if (effects.levelUp !== null && !isSafari && !isIE) {
+          effects.levelUp.play();
+        }
       }
     }
     setRandomTime(Math.floor(Math.random() * (max - min + 1) + min));
