@@ -1,3 +1,5 @@
+@import "../../_settings/variables";
+
 .gameInformations {
   position: absolute;
   left: 50%;
@@ -18,7 +20,7 @@
       position: absolute;
       right: 0;
       top: 0;
-      background-color: #000c4f;
+      background-color: $midnight-blue;
       padding: 0 1px;
     }
   }

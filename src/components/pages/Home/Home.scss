@@ -1,3 +1,5 @@
+@import "../../_settings/variables";
+
 .game {
   width: 100%;
   height: calc(100vh - 130px);
@@ -8,7 +10,7 @@
     height: 80%;
     width: 100%;
     position: relative;
-    background-color: #000c4f;
+    background-color: $midnight-blue;
   }
 }
 

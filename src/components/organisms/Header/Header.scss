@@ -1,3 +1,5 @@
+@import "../../_settings/variables";
+
 .header {
   height: 80px;
   width: 100%;
@@ -14,12 +16,12 @@
 
     &_button {
       user-select: none;
-      color: rgba(255, 255, 255, 0.25);
+      color: $transparent-white;
       height: 45px;
       width: 45px;
       border-radius: 15px;
       outline: none;
-      border: 2px solid rgba(255, 255, 255, 0.25);
+      border: 2px solid $transparent-white;
       background-color: transparent;
       display: flex;
       align-items: center;
@@ -32,8 +34,8 @@
       }
 
       &.active {
-        color: rgba(255, 255, 255, 0.75);
-        border: 2px solid rgba(255, 255, 255, 0.75);
+        color: $transparent-white-active;
+        border: 2px solid $transparent-white-active;
         transition: 0.25s;
       }
     }

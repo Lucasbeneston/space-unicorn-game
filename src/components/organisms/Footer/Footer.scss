@@ -1,7 +1,9 @@
+@import "../../_settings/variables";
+
 .footer {
   height: 50px;
   width: 100%;
-  background-color: #33373a;
+  background-color: $dark-grey;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,7 +11,7 @@
 
   &_copyright,
   &_github {
-    color: rgba(255, 255, 255, 0.5);
+    color: $light-grey;
     font-weight: lighter;
     font-size: 1.2rem;
   }
