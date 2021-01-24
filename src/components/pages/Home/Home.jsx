@@ -29,9 +29,8 @@ export default function Home() {
     gameOver: null,
   });
 
+  // SCREEN SIZE ANALYSIS (CUSTOM HOOK)
   const size = useWindowSize();
-  const unicornPosition = useRef(0);
-  const map = document.querySelector(".game_map");
 
   useEffect(() => {
     setEffects({
@@ -41,6 +40,7 @@ export default function Home() {
   }, [gameInformations]);
 
   // UNICORN JUMP FUNCTION
+  const unicornPosition = useRef(0);
   useEffect(() => {
     const unicorn = document.querySelector(".unicorn");
     let isJumping = false;
@@ -108,6 +108,7 @@ export default function Home() {
   }, [isPlaying, effects]);
 
   // GENERATE OBSTACLES FUNCTION
+  const map = document.querySelector(".game_map");
   function generateObstacles() {
     // Create and add new obstacle in the map
     const obstacle = document.createElement("div");
@@ -118,7 +119,8 @@ export default function Home() {
     map.appendChild(obstacle);
 
     // Obstacle start position
-    let obstaclePosition = 1700; // px
+    let obstaclePosition = size.width;
+
     obstacle.style.left = `${obstaclePosition}px`;
 
     // Advance the obstacle by 8px every 0.02s
