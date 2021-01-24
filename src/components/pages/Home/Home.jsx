@@ -9,6 +9,7 @@ import Unicorn from "../../atoms/Unicorn/Unicorn";
 import Volcano from "../../atoms/Volcano/Volcano";
 import GameGround from "../../atoms/GameGround/GameGround";
 import Start from "../../molecules/Start/Start";
+import GameInformations from "../../molecules/GameInformations/GameInformations";
 
 import "./Home.scss";
 
@@ -249,21 +250,13 @@ export default function Home() {
       {size.width > size.height * 1.25 ? (
         <>
           {isPlaying || isGameOver ? (
-            <div className="game_informations">
-              <div className="game_informations_score">
-                <h2>000000</h2>
-                <span>{score}</span>
-              </div>
-              <div className="game_informations_speedLevel">
-                <h2>Level</h2>
-                <span>{speedLevel}</span>
-              </div>
-            </div>
+            <GameInformations score={score} speedLevel={speedLevel} />
           ) : null}
 
           {!isPlaying && !isGameOver ? (
             <Start message="To start press" />
           ) : null}
+
           {!isPlaying && isGameOver ? (
             <Start option="- game over -" message="To replay press" />
           ) : null}

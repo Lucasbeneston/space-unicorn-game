@@ -10,44 +10,6 @@
     position: relative;
     background-color: #000c4f;
   }
-
-  &_informations {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    z-index: 150;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transform: translate(-50%);
-    line-height: 2.8rem;
-
-    &_score {
-      letter-spacing: 0.5rem;
-      font-size: 4rem;
-      position: relative;
-
-      & span {
-        position: absolute;
-        right: 0;
-        top: 0;
-        background-color: #000c4f;
-        padding: 0 1px;
-      }
-    }
-
-    &_speedLevel {
-      font-size: 3rem;
-      position: relative;
-      display: flex;
-      align-items: center;
-
-      & h2,
-      span {
-        font-size: 2rem;
-      }
-    }
-  }
 }
 
 .obstacle {
