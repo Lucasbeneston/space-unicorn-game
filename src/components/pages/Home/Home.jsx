@@ -233,10 +233,16 @@ export default function Home() {
       {size.width > size.height * 1.25 ? (
         <>
           {isPlaying || isGameOver ? (
-            <>
-              <h2 className="game_score">Score : {score}</h2>
-              <h2 className="game_speedLevel">Speed level : {speedLevel}</h2>
-            </>
+            <div className="game_informations">
+              <div className="game_informations_score">
+                <h2>000000</h2>
+                <span>{score}</span>
+              </div>
+              <div className="game_informations_speedLevel">
+                <h2>Level</h2>
+                <span>{speedLevel}</span>
+              </div>
+            </div>
           ) : null}
 
           {!isPlaying && !isGameOver ? (
