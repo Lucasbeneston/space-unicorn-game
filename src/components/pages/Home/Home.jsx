@@ -21,12 +21,13 @@ export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
+  const [randomTime, setRandomTime] = useState(0);
+  const [speed, setSpeed] = useState(0);
+  const [speedLevel, setSpeedLevel] = useState(1);
   const [effects, setEffects] = useState({
     jump: null,
     gameOver: null,
   });
-  const [randomTime, setRandomTime] = useState(0);
-  const [speed, setSpeed] = useState(0);
 
   const size = useWindowSize();
   const unicornPosition = useRef(0);
@@ -89,7 +90,11 @@ export default function Home() {
         if (!isPlaying) {
           setIsPlaying(true);
           setIsGameOver(false);
-          if (score > 0) setScore(0);
+
+          if (score > 0) {
+            setScore(0);
+          }
+          setSpeedLevel(1);
         }
       }
     }
@@ -150,14 +155,29 @@ export default function Home() {
       max = 2500; // ms
     } else if (speed > 10 && speed <= 20) {
       max = 2250; // ms
+      if (speed === 10.5) {
+        setSpeedLevel(2);
+      }
     } else if (speed > 20 && speed <= 30) {
       max = 2000; // ms
+      if (speed === 20.5) {
+        setSpeedLevel(3);
+      }
     } else if (speed > 30 && speed <= 40) {
       max = 1750; // ms
+      if (speed === 30.5) {
+        setSpeedLevel(4);
+      }
     } else if (speed > 40 && speed <= 50) {
       max = 1500; // ms
+      if (speed === 40.5) {
+        setSpeedLevel(5);
+      }
     } else {
       max = 1250; // ms
+      if (speed === 50.5) {
+        setSpeedLevel(6);
+      }
     }
     setRandomTime(Math.floor(Math.random() * (max - min + 1) + min));
   }
@@ -211,7 +231,10 @@ export default function Home() {
       {size.width > size.height * 1.25 ? (
         <>
           {isPlaying || isGameOver ? (
-            <h2 className="game_score">Score : {score}</h2>
+            <>
+              <h2 className="game_score">Score : {score}</h2>
+              <h2 className="game_speedLevel">Speed level : {speedLevel}</h2>
+            </>
           ) : null}
 
           {!isPlaying && !isGameOver ? (
