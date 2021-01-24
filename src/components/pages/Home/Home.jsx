@@ -153,11 +153,13 @@ export default function Home() {
     }, 20);
 
     setSpeed(speed + 0.5);
-    const min = 1000; // ms
-    let max; // ms
+    let min;
+    let max;
     if (speed <= 10) {
+      min = 1000; // ms
       max = 2500; // ms
     } else if (speed > 10 && speed <= 20) {
+      min = 950; // ms
       max = 2250; // ms
       if (speed === 10.5) {
         setSpeedLevel(2);
@@ -166,6 +168,7 @@ export default function Home() {
         }
       }
     } else if (speed > 20 && speed <= 30) {
+      min = 900; // ms
       max = 2000; // ms
       if (speed === 20.5) {
         setSpeedLevel(3);
@@ -174,6 +177,7 @@ export default function Home() {
         }
       }
     } else if (speed > 30 && speed <= 40) {
+      min = 850; // ms
       max = 1750; // ms
       if (speed === 30.5) {
         setSpeedLevel(4);
@@ -182,6 +186,7 @@ export default function Home() {
         }
       }
     } else if (speed > 40 && speed <= 50) {
+      min = 800; // ms
       max = 1500; // ms
       if (speed === 40.5) {
         setSpeedLevel(5);
@@ -190,6 +195,7 @@ export default function Home() {
         }
       }
     } else {
+      min = 750; // ms
       max = 1250; // ms
       if (speed === 50.5) {
         setSpeedLevel(6);
