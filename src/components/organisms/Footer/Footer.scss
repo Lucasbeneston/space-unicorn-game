@@ -18,5 +18,9 @@
     & svg {
       height: 1rem;
     }
+
+    &_link {
+      text-decoration: underline $transparent-white;
+    }
   }
 }

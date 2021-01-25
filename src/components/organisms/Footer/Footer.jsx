@@ -7,7 +7,13 @@ export default function Footer() {
   return (
     <footer className="footer">
       <h5 className="footer_copyright">
-        Made with <Love /> by Lucas Beneston
+        Made with <Love /> by{" "}
+        <a
+          className="footer_copyright_link"
+          href="https://www.linkedin.com/in/beneston-lucas/"
+        >
+          Lucas Beneston
+        </a>
       </h5>
       <a
         className="footer_github"
