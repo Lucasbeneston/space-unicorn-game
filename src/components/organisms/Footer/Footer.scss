@@ -14,5 +14,9 @@
     color: $light-grey;
     font-weight: lighter;
     font-size: 1.2rem;
+
+    & svg {
+      height: 1rem;
+    }
   }
 }
