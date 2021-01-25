@@ -259,12 +259,10 @@ export default function Home() {
             <GameInformations score={score} speedLevel={speedLevel} />
           ) : null}
 
-          {!isPlaying && !isGameOver ? (
-            <Start message="To start press" />
-          ) : null}
+          {!isPlaying && !isGameOver ? <Start message="- To Play -" /> : null}
 
           {!isPlaying && isGameOver ? (
-            <Start option="- game over -" message="To replay press" />
+            <Start option="game over" message="- To Replay -" />
           ) : null}
         </>
       ) : null}

@@ -7,12 +7,10 @@ export default function Start({ option, message }) {
   return (
     <div className="start">
       <h2 className="start_option">{option}</h2>
-      <h2 className="start_title">{message}</h2>
       <div className="start_keyboardIndication">
-        <p>space</p>
-        <span>or</span>
-        <p>arrowUp</p>
+        <p>Press Space or ArrowUp</p>
       </div>
+      <h2 className="start_title">{message}</h2>
     </div>
   );
 }
