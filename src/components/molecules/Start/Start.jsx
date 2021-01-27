@@ -14,6 +14,7 @@ export default function Start({ option, message }) {
     </div>
   );
 }
+
 Start.defaultProps = {
   option: null,
 };
