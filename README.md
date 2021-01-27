@@ -32,6 +32,8 @@ Liste (non exhaustive) des technologies et packages utilisés :
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom) : v 5.2.0
 - [prop-types](https://www.npmjs.com/package/prop-types) : v 15.7.2
 - [Husky](https://www.npmjs.com/package/husky) : v 4.3.4
+- [react-device-detect](https://www.npmjs.com/package/react-device-detect) : v 1.15.0
+- [react-particles-js](https://www.npmjs.com/package/react-particles-js) : v 3.4.1
 
 ## Démarrer le projet
 
