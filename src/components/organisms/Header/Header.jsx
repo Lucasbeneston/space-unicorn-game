@@ -75,6 +75,7 @@ export default function Header() {
     <header className="header">
       {size.width > size.height * 1.25 ? (
         <div className="header_containerButtons">
+          {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
           <button
             className={`header_containerButtons_button ${
               gameInformations.effect && !isSafari ? "active" : ""
@@ -89,6 +90,7 @@ export default function Header() {
           >
             <Effect />
           </button>
+          {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
           <button
             className={`header_containerButtons_button musicButton ${
               gameInformations.music && !isSafari ? "active" : ""
